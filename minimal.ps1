@@ -35,8 +35,21 @@ $tweaks = @(
 	"InstallNotepadplusplus",
 	"InstallIrfanview",
 	"InstallVLC",
-	"InstallAdobe",
-	"InstallBrave",
+	#"InstallAdobe",
+	"InstallFirefox",
+	"InstallDiscord",
+	"InstallRainmeter",
+	"InstallMPD",
+	"InstallAlacritty",
+	"Installsudo",
+	"InstallGNUEmacs",
+	"Installneovim",
+	"Installpandoc",
+	"InstallSteam",
+	"InstallOtherGameClient",
+	"InstallWox",
+	"InstallMultiMC",
+	"InstallOpenJDK8",
 	"ChangeDefaultApps",
 
 	### Windows Apps
@@ -89,7 +102,7 @@ $tweaks = @(
 	"DisableHomeGroups",          # "EnableHomeGroups",
 	"DisableSharedExperiences",     # "EnableSharedExperiences",
 	"DisableRemoteAssistance",      # "EnableRemoteAssistance",
-	"EnableRemoteDesktop",          # "DisableRemoteDesktop",
+	"DisableRemoteDesktop",          # "DisableRemoteDesktop",
 	"DisableAutoplay",              # "EnableAutoplay",
 	"DisableAutorun",               # "EnableAutorun",
 	"DisableStorageSense",        # "EnableStorageSense",
@@ -158,9 +171,9 @@ $tweaks = @(
 	"UninstallMsftBloat",           # "InstallMsftBloat",
 	"UninstallThirdPartyBloat",     # "InstallThirdPartyBloat",
 	# "UninstallWindowsStore",      # "InstallWindowsStore",
-	# "DisableXboxFeatures",          # "EnableXboxFeatures",
+	"DisableXboxFeatures",          # "EnableXboxFeatures",
 	"DisableAdobeFlash",            # "EnableAdobeFlash",
-	"InstallMediaPlayer", 		# "UninstallMediaPlayer",
+	# "InstallMediaPlayer", 		# "UninstallMediaPlayer",
 	"UninstallInternetExplorer",  # "InstallInternetExplorer",
 	"UninstallWorkFolders",       # "InstallWorkFolders",
 	"InstallLinuxSubsystem",      # "UninstallLinuxSubsystem",
@@ -168,8 +181,8 @@ $tweaks = @(
 	"SetPhotoViewerAssociation",    # "UnsetPhotoViewerAssociation",
 	"AddPhotoViewerOpenWith",       # "RemovePhotoViewerOpenWith",
 	"InstallPDFPrinter"		# "UninstallPDFPrinter",
-	# "UninstallXPSPrinter",          # "InstallXPSPrinter",
-	# "RemoveFaxPrinter",             # "AddFaxPrinter",
+	"UninstallXPSPrinter",          # "InstallXPSPrinter",
+	"RemoveFaxPrinter",             # "AddFaxPrinter",
 
 	### Server Specific Tweaks ###
 	# "HideServerManagerOnLogin",   # "ShowServerManagerOnLogin",
@@ -180,7 +193,7 @@ $tweaks = @(
 	# "EnableAudio",                # "DisableAudio",
 
 	### Unpinning ###
-	#"UnpinStartMenuTiles",
+	"UnpinStartMenuTiles",
 	#"UnpinTaskbarIcons",
 
 	### Auxiliary Functions ###
@@ -240,7 +253,7 @@ Function InstallTitusProgs {
 	choco install chocolatey-core.extension -y
 	Write-Output "Running O&O Shutup with Recommended Settings"
 	Import-Module BitsTransfer
-	Start-BitsTransfer -Source "https://raw.githubusercontent.com/ChrisTitusTech/win10script/master/ooshutup10.cfg" -Destination ooshutup10.cfg
+	Start-BitsTransfer -Source "https://raw.githubusercontent.com/PanKohnih/win10script/master/ooshutup10.cfg" -Destination ooshutup10.cfg
 	Start-BitsTransfer -Source "https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe" -Destination OOSU10.exe
 	./OOSU10.exe ooshutup10.cfg /quiet
 }
@@ -249,28 +262,62 @@ Function InstallAdobe {
 	Show-Choco-Menu -Title "Do you want to install Adobe Acrobat Reader?" -ChocoInstall "adobereader"
 }
 
-Function InstallBrave {
-	do
- {
-    Clear-Host
-    Write-Host "================ Do You Want to Install Brave Browser? ================"
-    Write-Host "Y: Press 'Y' to do this."
-    Write-Host "2: Press 'N' to skip this."
-	Write-Host "Q: Press 'Q' to stop the entire script."
-    $selection = Read-Host "Please make a selection"
-    switch ($selection)
-    {
-    'y' { 
-		Invoke-WebRequest -Uri "https://laptop-updates.brave.com/download/CHR253" -OutFile $env:USERPROFILE\Downloads\brave.exe
-		~/Downloads/brave.exe
-	}
-    'n' { Break }
-    'q' { Exit  }
-    }
- }
- until ($selection -match "y" -or $selection -match "n" -or $selection -match "q")
-	
+Function InstallFirefox {
+	Show-Choco-Menu -Title "Do you want to install Mozilla Firefox?" - ChocoInstall "firefox"
 }
+
+Function InstallDiscord {
+	Show-Choco-Menu -Title "Do you want to install Discord?" - ChocoInstall "discord"
+}
+
+Function InstallRainmeter {
+	Show-Choco-Menu -Title "Do you want to install Rainmeter?" - ChocoInstall "rainmeter"
+}
+
+Function InstallMPD {
+	Show-Choco-Menu -Title "Do you want to install MPD?" - ChocoInstall "mpd"
+}
+
+Function InstallAlacritty {
+	Show-Choco-Menu -Title "Do you want to install Alacritty?" - ChocoInstall "alacritty"
+}
+
+Function Installsudo {
+	Show-Choco-Menu -Title "Do you want to install sudo?" - ChocoInstall "sudo"
+}
+
+Function InstallGNUEmacs {
+	Show-Choco-Menu -Title "Do you want to install GNU/Emacs" - ChocoInstall "emacs"
+}
+
+Function Installneovim {
+	Show-Choco-Menu -Title "Do you want to install neovim?" - ChocoInstall "neovim"
+}
+
+Function Installpandoc {
+	Show-Choco-Menu -Title "Do you want to install Pandoc?" - ChocoInstall "pandoc"
+}
+
+Function InstallSteam {
+	Show-Choco-Menu -Title "Do you want to install Steam?" - ChocoInstall "steam"
+}
+
+Function InstallOtherGameClient {
+	Show-Choco-Menu -Title "Do you want to install Playnite?" - ChocoInstall "playnite"
+}
+
+Function InstallWox {
+	Show-Choco-Menu -Title "Do you want to install Wox?" - ChocoInstall "wox"
+}
+
+Function InstallMultiMC {
+	Show-Choco-Menu -Title "Do you want to install MultiMC?" - ChocoInstall "multimc"
+}
+
+Function InstallOpenJDK8 {
+	Show-Choco-Menu -Title "Do you want to install OpenJDK8?" - ChocoInstall "openjdk8"
+}
+
 Function Install7Zip {
 	Show-Choco-Menu -Title "Do you want to install 7-Zip?" -ChocoInstall "7zip"
 }
@@ -288,8 +335,8 @@ Function InstallIrfanview {
 }
 
 Function ChangeDefaultApps {
-	Write-Output "Setting Default Programs - Notepad++ Brave VLC IrFanView"
-	Start-BitsTransfer -Source "https://raw.githubusercontent.com/ChrisTitusTech/win10script/master/MyDefaultAppAssociations.xml" -Destination $HOME\Desktop\MyDefaultAppAssociations.xml
+	Write-Output "Setting Default Programs - Notepad++ VLC IrFanView"
+	Start-BitsTransfer -Source "https://raw.githubusercontent.com/PanKohnih/win10script/master/MyDefaultAppAssociations.xml" -Destination $HOME\Desktop\MyDefaultAppAssociations.xml
 	dism /online /Import-DefaultAppAssociations:"%UserProfile%\Desktop\MyDefaultAppAssociations.xml"
 }
 
