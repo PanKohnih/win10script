@@ -287,7 +287,7 @@ Function Installsudo {
 }
 
 Function InstallGNUEmacs {
-	Show-Choco-Menu -Title "Do you want to install GNU/Emacs" - ChocoInstall "emacs"
+	Show-Choco-Menu -Title "Do you want to install GNU/Emacs" - ChocoInstall "emacs git ripgrep fd llvm"
 }
 
 Function Installneovim {
@@ -335,7 +335,7 @@ Function InstallIrfanview {
 }
 
 Function ChangeDefaultApps {
-	Write-Output "Setting Default Programs - Notepad++ VLC IrFanView"
+	Write-Output "Setting Default Programs - Notepad++ VLC Firefox IrFanView"
 	Start-BitsTransfer -Source "https://raw.githubusercontent.com/PanKohnih/win10script/master/MyDefaultAppAssociations.xml" -Destination $HOME\Desktop\MyDefaultAppAssociations.xml
 	dism /online /Import-DefaultAppAssociations:"%UserProfile%\Desktop\MyDefaultAppAssociations.xml"
 }
